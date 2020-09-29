@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/home']">HotelNet</a>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"  routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/hotel']">Hotels </a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn()" routerLinkActive="active" >
+        <a class="nav-link" [routerLink]="['/booking']" >My Bookings</a>
+      </li>
+    </ul>
+
+    <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <a class="dropdown-toggle text-light mr-2" dropdownToggle>Manage</a>
+
+      <div class="dropdown-menu mt-2 mr-3" *dropdownMenu>
+        <a class="dropdown-item" [routerLink]="['/booking']"
+          ><i class="far fa-calendar-alt"></i>My Bookings</a
+        >
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" 
+        (click)="onLogout()"
+          ><i class="fa fa-sign-out"></i>Logout</a
+        >
+      </div>
+    </div>
+
+    <form
+      *ngIf="!loggedIn()"
+      #loginForm="ngForm"
+      class="form-inline my-2 my-lg-0"
+      (ngSubmit)="onLogin(loginForm)"
+    >
+      <input
+        class="form-control mr-sm-2"
+        type="email"
+        placeholder="Email ID"
+        name="email"
+        required
+        [(ngModel)]="model.email"
+      />
+      <input
+        class="form-control mr-sm-2"
+        type="password"
+        placeholder="Password"
+        name="password"
+        required
+        [(ngModel)]="model.password"
+      />
+      <button
+        class="btn btn-success my-2 my-sm-0"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</nav>

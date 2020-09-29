@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-12">
+    <app-hotel-item
+      *ngFor="let hotelEl of hotels; let i = index"
+      [hotel]="hotelEl"
+      [index]="i"
+    ></app-hotel-item>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12" *ngFor="let hotel of hotels">
+    <p>{{hotel.hotelId}} | {{hotel.location}}</p>
+  </div>
+</div>
+
